@@ -739,6 +739,11 @@
 			};
 
 			function moveTo(coord, now) {
+				var holder = $(options.holder, this).first();
+				if ( coord <= -holder.width ) {
+					coord = -holder.width + holder.find(options.item).first().width();
+				}
+				
 				var delay = typeof(now) == 'undefined' ? options.duration : 0;
 
 				if (typeof(now) == 'undefined' && $.isFunction(options.onChange) && hasChanges) {
